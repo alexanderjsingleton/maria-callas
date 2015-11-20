@@ -8,9 +8,10 @@ import greenfoot.*;
  */
 public class MariaCallasOperaAriasWorld extends World
 {
-    // Class instance fields
+    // Class instance fields=> constant class variable "static"
     private static final int MAX_BUCKS = 10;
     private int currentNumberBucks;
+    // Array consisting of Greenfootbuck
     GreenfootBuck bucksArray [];
     /**
      * Constructor for objects of class MariaCallasOperaAriasWorld.
