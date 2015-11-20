@@ -31,6 +31,49 @@ public class Video extends Actor
 
     public void act() 
     {
-        // Add your action code here.
-    }    
+        checkMousedOver();
+        checkMouseClickedOn();
+    } 
+
+    private void checkMousedOver()
+    {
+        if ( Greenfoot.mouseMoved(this) )
+        {
+           getWorld().showText(opera + " " + aria + " " + greenfootBucksCost + " GreenfootBucks",300,30);
+        }
+    }
+
+    private void checkMouseClickedOn()
+    {
+        if ( Greenfoot.mousePressed(this))
+        {
+            int greenfootBucksLeft = ((MariaCallasOperaAriasWorld)(getWorld())).getGreenfootBucks();
+            if ( greenfootBucksLeft < greenfootBucksCost )
+            {
+                getWorld().showText(" Not enough greenFootBucks",300,30);  
+                return;                 // not able to continue in this method because not enough GreenfootBucks
+            }
+            else if ( timesViewed >= maxViewsAllowed )
+            {
+                getWorld().showText(" No more views left",300,30);
+                return;                // not able to continue in this method because reached the limit of number of views
+            }
+            else
+            {
+                try 
+                {
+                    String URL = url;                 //  URL of the YouTube video
+                    java.awt.Desktop.getDesktop().browse(java.net.URI.create(URL));             //  Java code to open the URL in a web browser window
+                }
+                catch (Exception e)                                // Java run time will throw an error if web page not opened
+                {
+                    getWorld().showText("Could not open web page",50,30);                      
+                    return;                                                                 // not able to continue because the video did not open
+                }
+                getWorld().showText("Video is Playing",300,30);
+                ((MariaCallasOperaAriasWorld)(getWorld())).removeGreenfootBucks(greenfootBucksCost);        // pay for watching the viewo   
+                timesViewed = timesViewed + 1;                                             // increment the number of times viewed
+            }
+        }
+    }
 }
