@@ -15,7 +15,20 @@ public class Video extends Actor
     private int greenfootBucksCost;
     private int maxViewsAllowed;
     private String image;
-    private int timesViewed;
+    private int timesViewed;    
+    public Video(String ariaName, String operaName, String urlName, String imageName, int cost, int viewLimit)
+    {
+
+        aria = ariaName;
+        opera = operaName;
+        url = urlName;
+        image = imageName;  // image is a String
+        setImage(image);       // to get the actual image we need the method setImage()
+        greenfootBucksCost = cost;
+        maxViewsAllowed = viewLimit;
+        timesViewed = 0;
+    }
+
     public void act() 
     {
         // Add your action code here.
